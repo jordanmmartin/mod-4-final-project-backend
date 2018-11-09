@@ -1,6 +1,7 @@
 class Event < ApplicationRecord
-  has_one :task_list
   has_many :invites
+  belongs_to :host, {class_name: 'User'}
   has_many :users, through: :invites
-  has_many :tasks, through: :task_list
+  has_many :tasks, through: :invites
+  has_many :assignments, through: :invites
 end
