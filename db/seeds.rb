@@ -22,3 +22,9 @@ jordan_movie_invite = Invite.create(user: jordan, event: movie_night, status: tr
 mckenzie_movie_invite = Invite.create(user: mckenzie, event: movie_night, status: true)
 jordan_wine_invite = Invite.create(user: jordan, event: wine_night, status: true)
 mckenzie_wine_invite = Invite.create(user: mckenzie, event: wine_night, status: true)
+
+bring_movie = Task.create(name: "Bring a movie", invite: jordan_movie_invite)
+bring_wine = Task.create(name: "Bring wine", invite: mckenzie_wine_invite)
+
+ movie_assignment = Assignment.create(task: bring_movie, invite_id: mckenzie_movie_invite)
+ wine_assignment = Assignment.create(task: bring_wine, invite_id: jordan_wine_invite)
