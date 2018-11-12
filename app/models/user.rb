@@ -4,4 +4,5 @@ class User < ApplicationRecord
   has_many :event_attendings, {through: :invites, source: :event}
   has_many :tasks, through: :invites
   has_many :assignments, through: :invites
+
 end
