@@ -15,10 +15,10 @@ class TasksController < ApplicationController
 
   # POST /tasks
   def create
-    @task = Task.new(task_params)
-
-    if @task.save
-      render json: @task, status: :created, location: @task
+    @task = Task.create(task_params)
+    if @task.valid?
+      @events = Event.all
+      render json: @events, status: :created, location: @task
     else
       render json: @task.errors, status: :unprocessable_entity
     end
@@ -46,6 +46,6 @@ class TasksController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def task_params
-      params.require(:task).permit(:user_id, :task_list_id, :doer_id, :name)
+      params.require(:task).permit(:invite_id, :name)
     end
 end
