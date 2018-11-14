@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :first_name, :last_name, :city, :state, :username
+  attributes :id, :first_name, :last_name, :city, :state, :username, :image
   has_many :invites
   has_many :event_hostings, {class_name: 'Event', foreign_key: 'host_id' }
   has_many :event_attendings, {through: :invites, source: :event}

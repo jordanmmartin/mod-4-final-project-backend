@@ -1,5 +1,5 @@
 class EventSerializer < ActiveModel::Serializer
-  attributes :id, :name, :date, :description, :host_id, :location
+  attributes :id, :name, :date, :description, :host_id, :location, :image
   has_many :invites
   belongs_to :host, {class_name: 'User'}
   has_many :users, through: :invites

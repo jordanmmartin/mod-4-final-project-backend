@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :update, :destroy]
+  skip_before_action :authorized
 
   # GET /tasks
   def index
@@ -35,7 +36,13 @@ class TasksController < ApplicationController
 
   # DELETE /tasks/1
   def destroy
+    @assignment = Assignment.all.find_by(task_id: @task.id)
+    if @assignment
+      @assignment.destroy
+    end
     @task.destroy
+    @events = Event.all
+    render json: @events, status: :created
   end
 
   private
