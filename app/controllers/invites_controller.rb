@@ -18,7 +18,8 @@ class InvitesController < ApplicationController
     @invite = Invite.new(invite_params)
 
     if @invite.save
-      render json: @invite, status: :created, location: @invite
+      @events = Event.all
+      render json: @events, status: :created, location: @invite
     else
       render json: @invite.errors, status: :unprocessable_entity
     end
