@@ -15,10 +15,11 @@ class AssignmentsController < ApplicationController
 
   # POST /assignments
   def create
-    @assignment = Assignment.new(assignment_params)
+    @assignment = Assignment.create(assignment_params)
 
-    if @assignment.save
-      render json: @assignment, status: :created, location: @assignment
+    if @assignment.valid?
+      @events = Event.all
+      render json: @events, status: :created, location: @assignment
     else
       render json: @assignment.errors, status: :unprocessable_entity
     end
